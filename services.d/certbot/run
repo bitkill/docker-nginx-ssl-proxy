@@ -18,7 +18,7 @@ echo Nginx has arrived.
 while true; do
 
     if certbot certonly --non-interactive --webroot -w /usr/share/nginx/html --agree-tos \
-            --rsa-key-size 2048 --keep-until-expiring --expand --register-unsafely-without-email -d $SERVERNAME $EXTRANAMES; then
+            --rsa-key-size 2048 --keep-until-expiring --expand --register-unsafely-without-email -d $SERVERNAME $EXTRANAMES $EXTRACONF; then
         cp /etc/letsencrypt/live/${SERVERNAME:-example.com}/privkey.pem /etc/letsencrypt/privkey-copy.pem
         cp /etc/letsencrypt/live/${SERVERNAME:-example.com}/fullchain.pem /etc/letsencrypt/fullchain-copy.pem
         nginx -s reload
